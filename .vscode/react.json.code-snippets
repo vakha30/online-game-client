@@ -1,0 +1,14 @@
+{
+	"Create React Arrow Function Component with Export": {
+		"prefix": "rafce",
+		"body": [
+		  "import { FC } from 'react';",
+		  "",
+		  "export const ${TM_FILENAME_BASE}: FC = () => {",
+		  "\treturn ();",
+		  "};",
+		  "",
+		],
+		"description": "Create React Arrow Function Component with Export"
+	  }
+}
