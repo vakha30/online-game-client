@@ -1,5 +1,5 @@
 import { FC, lazy } from 'react';
-import { Button, Checkbox, Typography, useTheme } from '@mui/material';
+import { Box, Button, Checkbox, Typography, useTheme } from '@mui/material';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useAuth } from 'js-game/providers/authProvider/AuthHook';
 import { useGlobalApi } from 'js-game/api-tools';
@@ -13,11 +13,13 @@ const RootRouting: FC = () => {
   const { token } = useAuth();
 
   return (
-    <Routes>
-      <Route path="/login" element={!token ? <Login /> : <Navigate to="/" />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="*" element={token ? <Home /> : <Navigate to="/login" />} />
-    </Routes>
+    <Box width="100%" height="100vh">
+      <Routes>
+        <Route path="/login" element={!token ? <Login /> : <Navigate to="/" />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="*" element={token ? <Home /> : <Navigate to="/login" />} />
+      </Routes>
+    </Box>
   );
 };
 

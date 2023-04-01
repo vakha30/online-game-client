@@ -3,6 +3,7 @@ import axios from 'axios';
 import { AuthContext } from './AuthContext';
 import { LS_TOKEN_KEY } from './constants';
 import { AuthType, UserType } from 'js-game/types/global';
+import { Loading } from 'js-game/components';
 
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(() => localStorage.getItem(LS_TOKEN_KEY));
@@ -61,7 +62,7 @@ export const AuthProvider = ({ children }) => {
   }, [token]);
 
   if (token && user === undefined) {
-    return <h2>LOADING ...</h2>;
+    return <Loading />;
   }
 
   return (
