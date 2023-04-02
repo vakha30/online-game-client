@@ -1,20 +1,32 @@
-import { FC, useEffect, useState } from 'react';
-import { useAction, useGlobalApi } from 'js-game/api-tools';
-import * as actions from './actions';
-import axios from 'axios';
+import { FC } from 'react';
 import { useAuth } from 'js-game/providers/authProvider/AuthHook';
-import { AuthType, UserType } from 'js-game/types/global';
-import { Box } from '@mui/material';
+import { NavLink } from 'react-router-dom';
+import { Loading } from 'js-game/components';
+import { useWhoami } from 'js-game/hooks';
+import { useGlobalApi } from 'js-game/api-tools';
+import { CreateCity } from '../../root/CreateCity';
 
 const Home: FC = () => {
-  const { logout, user } = useAuth();
+  const { logout } = useAuth();
+  const whoami = useWhoami();
+  const [data] = useGlobalApi<{ city: { name: string } }>('/api/city');
+
+  if (whoami === undefined || data === undefined) {
+    return <Loading />;
+  }
+
+  const { city } = data;
+
+  if (!city) {
+    return <CreateCity />;
+  }
 
   return (
-    <Box height="100%">
+    <div>
       Home page
-      <button onClick={logout}>LOGOUT</button>
-      {<h3>{user.name}</h3>}
-    </Box>
+      {<h3>{whoami.name}</h3>}
+      {<h3>{city.name}</h3>}
+    </div>
   );
 };
 

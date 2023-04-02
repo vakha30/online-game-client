@@ -12,3 +12,6 @@ export const addUser = () =>
     login: 'example',
     password: 'stalker95',
   });
+
+export const createCity = ({ city }: { city: string }) =>
+  axios.post('/api/city/create', { name: city });
