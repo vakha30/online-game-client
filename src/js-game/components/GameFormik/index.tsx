@@ -13,7 +13,7 @@ export const GameFormik: FC<FormikValues> = ({ initialValues, onSubmit, validate
     >
       {({ isSubmitting }) => (
         <Form>
-          <Stack>{children({ isSubmitting })}</Stack>
+          <Stack spacing={2}>{children({ isSubmitting })}</Stack>
         </Form>
       )}
     </Formik>

@@ -2,7 +2,7 @@ import axios from 'axios';
 import { Field } from 'formik';
 import { ValidationError } from 'js-game/components';
 import { GameFormik } from 'js-game/components/GameFormik';
-import { Stack } from 'js-game/components/ui';
+import { Button, Paper, Stack } from 'js-game/components/ui';
 import { useAuth } from 'js-game/providers/authProvider/AuthHook';
 import { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -29,8 +29,8 @@ const Login: FC = () => {
 
   return (
     <div>
-      <div>
-        <Stack>
+      <Paper padding={2}>
+        <Stack alignItems="center">
           <p>Вход</p>
           <GameFormik initialValues={initialValues} onSubmit={userLogin} validate={(values) => {}}>
             {({ isSubmitting }) => (
@@ -38,9 +38,7 @@ const Login: FC = () => {
                 <Field name="login" placeholder="Логин" />
                 <Field name="password" placeholder="Пароль" />
                 {loginError && <ValidationError errorText={loginError} />}
-                <Stack>
-                  <button type="submit">Войти</button>
-                </Stack>
+                <Button variant="contained">Войти</Button>
               </>
             )}
           </GameFormik>
@@ -48,7 +46,7 @@ const Login: FC = () => {
             Создать аккаунт можно на странице <Link to="/register">регистрации</Link>
           </p>
         </Stack>
-      </div>
+      </Paper>
     </div>
   );
 };

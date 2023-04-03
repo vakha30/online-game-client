@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
-import { ThemeProvider } from 'styled-components';
+import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { AuthProvider } from 'js-game/providers/authProvider/AuthProvider';
 import RootRouting from './root/RootRouting';
 import { Suspense } from 'react';
@@ -10,25 +10,29 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
+import { css } from '@emotion/react';
+
+const GlobalStyle = createGlobalStyle`
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+`;
 
 const theme = {
   spacing: (value: number) => {
     switch (value) {
       case 1:
-        return '8px';
-        break;
+        return '4px';
       case 2:
-        return '16px';
-        break;
+        return '8px';
       case 3:
-        return '24px';
-        break;
+        return '16px';
       case 4:
-        return '32px';
-        break;
+        return '24px';
       case 5:
-        return '40px';
-        break;
+        return '32px';
       default:
         throw new Error('Bad value');
     }
@@ -41,6 +45,7 @@ root.render(
     <ThemeProvider theme={theme}>
       <AuthProvider>
         <Suspense fallback={<Loading />}>
+          <GlobalStyle />
           <RootRouting />
         </Suspense>
       </AuthProvider>

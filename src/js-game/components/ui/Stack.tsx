@@ -1,13 +1,15 @@
 import { FC, PropsWithChildren } from 'react';
 import styled, { css } from 'styled-components';
-import { SPACING } from './constants';
+import { BaseStylesProps, baseStyles } from './styles';
 
-type Props = PropsWithChildren & {
-  spacing?: number;
-  direction?: 'row' | 'column';
-};
+type Props = PropsWithChildren &
+  BaseStylesProps & {
+    spacing?: number;
+    direction?: 'row' | 'column';
+    alignItems?: 'flex-start' | 'center' | 'flex-end';
+  };
 
-const columnSpacing = css`
+const columnSpacing = css<Props>`
   ${({ theme, spacing }) => `
   & > :not(:last-child) {
     margin-bottom: ${theme.spacing(spacing)};
@@ -23,16 +25,31 @@ const rowSpacing = css`
   `}
 `;
 
-const StackUI = styled.div`
+const StackUI = styled.div<Props>`
   display: flex;
   flex-direction: ${({ direction }) => direction};
-  align-items: flex-start;
+  align-items: ${({ alignItems }) => alignItems};
   ${({ spacing, direction }) => spacing && (direction === 'row' ? rowSpacing : columnSpacing)}
+
+  ${baseStyles}
 `;
 
-export const Stack: FC<Props> = ({ children, spacing, direction = 'column' }) => {
+export const Stack: FC<Props> = ({
+  children,
+  spacing,
+  direction = 'column',
+  alignItems = 'flex-start',
+  width,
+  height,
+}) => {
   return (
-    <StackUI spacing={spacing} direction={direction}>
+    <StackUI
+      spacing={spacing}
+      direction={direction}
+      alignItems={alignItems}
+      width={width}
+      height={height}
+    >
       {children}
     </StackUI>
   );
