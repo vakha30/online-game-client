@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components';
 type Props = {
   variant?: 'outlined' | 'contained' | 'none';
   color?: 'primary' | 'secondary';
+  onClick?: () => void;
 };
 
 const outlinedVariant = css`
@@ -20,10 +21,18 @@ const ButtonUI = styled.button<Props>`
   border: none;
   cursor: pointer;
   padding: ${({ theme }) => `${theme.spacing(1)} ${theme.spacing(2)}`};
-    ${({ variant }) =>
-      variant !== 'none' && (variant === 'outlined' ? outlinedVariant : containedVariant)};
+  ${({ variant }) =>
+    variant !== 'none' && (variant === 'outlined' ? outlinedVariant : containedVariant)};
 `;
 
-export const Button: FC<PropsWithChildren<Props>> = ({ children, variant = 'outlined' }) => {
-  return <ButtonUI variant={variant}>{children}</ButtonUI>;
+export const Button: FC<PropsWithChildren<Props>> = ({
+  children,
+  variant = 'outlined',
+  onClick,
+}) => {
+  return (
+    <ButtonUI variant={variant} onClick={onClick}>
+      {children}
+    </ButtonUI>
+  );
 };

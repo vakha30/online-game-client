@@ -12,16 +12,16 @@ const RootRouting: FC = () => {
   const { token } = useAuth();
 
   return (
-    <div>
+    <Stack>
       <Header />
-      <Stack>
+      <Stack width="100%" height="100%">
         <Routes>
           <Route path="/login" element={!token ? <Login /> : <Navigate to="/" replace />} />
           <Route path="/register" element={<Register />} />
           <Route path="*" element={token ? <Home /> : <Navigate to="/login" replace />} />
         </Routes>
       </Stack>
-    </div>
+    </Stack>
   );
 };
 

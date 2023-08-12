@@ -28,26 +28,24 @@ const Login: FC = () => {
   };
 
   return (
-    <div>
-      <Paper padding={2}>
-        <Stack alignItems="center">
-          <p>Вход</p>
-          <GameFormik initialValues={initialValues} onSubmit={userLogin} validate={(values) => {}}>
-            {({ isSubmitting }) => (
-              <>
-                <Field name="login" placeholder="Логин" />
-                <Field name="password" placeholder="Пароль" />
-                {loginError && <ValidationError errorText={loginError} />}
-                <Button variant="contained">Войти</Button>
-              </>
-            )}
-          </GameFormik>
-          <p>
-            Создать аккаунт можно на странице <Link to="/register">регистрации</Link>
-          </p>
-        </Stack>
-      </Paper>
-    </div>
+    <Paper padding={2}>
+      <Stack alignItems="center" spacing={3}>
+        <p>Вход</p>
+        <GameFormik initialValues={initialValues} onSubmit={userLogin} validate={(values) => {}}>
+          {({ isSubmitting }) => (
+            <>
+              <Field name="login" placeholder="Логин" />
+              <Field name="password" placeholder="Пароль" />
+              {loginError && <ValidationError errorText={loginError} />}
+              <Button variant="contained">Войти</Button>
+            </>
+          )}
+        </GameFormik>
+        <p>
+          Создать аккаунт можно на странице <Link to="/register">регистрации</Link>
+        </p>
+      </Stack>
+    </Paper>
   );
 };
 

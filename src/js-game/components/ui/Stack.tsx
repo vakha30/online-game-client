@@ -6,6 +6,7 @@ type Props = PropsWithChildren &
   BaseStylesProps & {
     spacing?: number;
     direction?: 'row' | 'column';
+    justifyContent?: 'flex-start' | 'center' | 'flex-end' | 'space-between';
     alignItems?: 'flex-start' | 'center' | 'flex-end';
   };
 
@@ -28,6 +29,7 @@ const rowSpacing = css`
 const StackUI = styled.div<Props>`
   display: flex;
   flex-direction: ${({ direction }) => direction};
+  justify-content: ${({ justifyContent }) => justifyContent};
   align-items: ${({ alignItems }) => alignItems};
   ${({ spacing, direction }) => spacing && (direction === 'row' ? rowSpacing : columnSpacing)}
 
@@ -38,6 +40,7 @@ export const Stack: FC<Props> = ({
   children,
   spacing,
   direction = 'column',
+  justifyContent = 'flex-start',
   alignItems = 'flex-start',
   width,
   height,
@@ -46,6 +49,7 @@ export const Stack: FC<Props> = ({
     <StackUI
       spacing={spacing}
       direction={direction}
+      justifyContent={justifyContent}
       alignItems={alignItems}
       width={width}
       height={height}

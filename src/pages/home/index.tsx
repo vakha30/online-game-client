@@ -5,6 +5,7 @@ import { Loading } from 'js-game/components';
 import { useWhoami } from 'js-game/hooks';
 import { useGlobalApi } from 'js-game/api-tools';
 import { CreateCity } from '../../root/CreateCity';
+import { Button } from 'js-game/components/ui';
 
 const Home: FC = () => {
   const { logout } = useAuth();
@@ -24,8 +25,9 @@ const Home: FC = () => {
   return (
     <div>
       Home page
-      {<h3>{whoami.name}</h3>}
-      {<h3>{city.name}</h3>}
+      <h3>{whoami.name}</h3>
+      <h3>{city.name}</h3>
+      <Button onClick={logout}>Выйти</Button>
     </div>
   );
 };

@@ -1,9 +1,10 @@
+import { Stack } from 'js-game/components/ui';
 import { FC } from 'react';
 
 export const Header: FC = () => {
   return (
-    <div>
-      <p>Добро пожаловать в игру</p>
-    </div>
+    <Stack width="100%" alignItems="center">
+      Game Online
+    </Stack>
   );
 };
